@@ -14,6 +14,7 @@ NetworkManager *nm = new NetworkManager();
 int main(int argc, char** argv){
 
     /* start your program */
+    cout<<"hello world \n";
 
     return 0;
 }
