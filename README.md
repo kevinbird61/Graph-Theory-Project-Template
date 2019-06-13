@@ -334,14 +334,14 @@ make
 ![image](https://github.com/p5802p5802/Graph-Theory-Project-Template/blob/master/topo_result.png)
 
 
-2. topo2.txt
+2. topo2.txt  
 ![image](https://github.com/p5802p5802/Graph-Theory-Project-Template/blob/master/topo2.png)
 
 
 ![image](https://github.com/p5802p5802/Graph-Theory-Project-Template/blob/master/topo2_result.png)
 
 
-3. topo3.txt
+3. topo3.txt  
 ![image](https://github.com/p5802p5802/Graph-Theory-Project-Template/blob/master/topo3.png) 
 
 
