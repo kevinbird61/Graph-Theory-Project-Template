@@ -182,3 +182,51 @@ end 用於紀錄shortest_path終點
       cout<<"degree_arr["<< i <<"]= "<< degree_arr[i]<<endl;
 ```
 利用上面的關係圖取得各點之間的degree關係（如果>0,則outdegree > indegree;如果<0,則outdegree < indegree）
+```
+//edge_bonus
+    fin_flag = 0;
+    while(!fin_flag){
+      fin_flag = 1;
+      add_flag = 0; 
+      //find end node
+      for(int i=0;i< degree_arr.size();i++)
+        if(degree_arr[i] > 0){
+          degree_arr[i]--;
+          end = i;
+          add_flag = 1;
+          break;
+        }
+      //find start node
+      for(int i=0;i< degree_arr.size();i++)
+        if(degree_arr[i] < 0){
+          degree_arr[i]++;
+          start = i;
+          break;
+        }
+
+      //print degree array change
+      cout<<"------ change of degeree array ------"<<endl;
+      for(int i=0;i< degree_arr.size();i++)
+        cout<<"degree_arr["<< i <<"]= "<< degree_arr[i]<<endl;
+
+      //add edge
+      if(add_flag){
+        e_arr_bonus = shortest_path(start,end,v_arr.size(),e_arr);
+        for(int i=0;i< v_arr.size();i++){
+          for(int j=0;j< v_arr.size();j++)
+            if(e_arr_bonus[i][j]){
+              e_arr[i][j] = e_arr[i][j] + e_arr_bonus[i][j];
+              edge_num ++;
+            }
+        }
+      }
+      //check
+      for(int i=0;i< degree_arr.size();i++)
+        if(degree_arr[i] != 0){
+          fin_flag = 0;
+          break;
+        }
+    }
+```
+利用上述取得的degree關係,若非所有degree等於0,則將degree為正的點與degree為負的點之間兩兩配對  
+並利用shortest_path加到邊的關係圖中
