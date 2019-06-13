@@ -1,4 +1,9 @@
 # E24046307 Proect report
+## 圖的設定
+1. 圖為有向圖
+2. 每個邊的權重值皆為1
+3. 起始點為最小輸入點.（ex: 當圖的點為b,c,d 則以b為起始點）
+
 ## 演算法思路
 1. 讀取圖片後,轉成二維的點點關係圖
 2. 利用該點點關係圖,取得各點的indegree與outdegree
@@ -42,4 +47,56 @@ node_now 用於紀錄現在的節點位置
 node_pre_index 用於紀錄前一個節點在path_buffer中的位置  
 node_pre 用於紀錄前一個節點是誰  
 fin_flag 用於紀錄while loop是否完成目標工作  
-counter 用於紀錄目前BFS演算法走到  
+counter 用於紀錄目前BFS演算法走到哪  
+
+```
+//initialize e_arr_bonus;
+    for(int i=0;i< v_num;i++){
+     vector <int> e_arr_bonus_temp; 
+     for(int j=0;j< v_num;j++)
+       e_arr_bonus_temp.push_back(0);
+     e_arr_bonus.push_back(e_arr_bonus_temp);
+    }
+```
+把e_arr_bonus 的元素初始化成0  
+```
+//find shortest path
+    node_now = start;
+    path_buffer.push_back(start);
+    previous_node.push_back(-1);
+
+    while(!fin_flag){
+      for(int i=0;i< v_num;i++)
+        if(e_arr[node_now][i]){
+          path_buffer.push_back(i);
+          previous_node.push_back(counter);
+        }
+      counter++;
+      node_now = path_buffer[counter];
+      for(int i;i<path_buffer.size();i++)
+        if(path_buffer[i] == end)
+          fin_flag = 1;
+    }    
+    node_now = end;
+    for(int i=0;i<path_buffer.size();i++)
+      if(path_buffer[i] == end){
+        node_pre_index = i;
+        break;
+      }
+    while(node_now != start){
+      node_pre_index = previous_node[node_pre_index];
+      node_pre = path_buffer[node_pre_index];
+      e_arr_bonus[node_pre][node_now]++;
+      node_now = node_pre;
+    }
+    
+    return e_arr_bonus;
+}
+```
+這段程式碼利用BFS找輸入兩點間的最短路徑並將經過的路徑紀錄到e_arr_bonus並回傳之  
+```
+// create NetworkManager first
+NetworkManager *nm = new NetworkManager();
+```
+宣告一個新的NetworkManager
+```
