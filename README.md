@@ -318,4 +318,17 @@ end 用於紀錄shortest_path終點
 
     return 0;
 ```
-把圖特徵轉成dot檔,
+把圖特徵轉成dot檔
+
+## 程式執行方式
+```
+make 
+./main.out topo.txt //topo.txt can change into any filename you need
+```
+
+## 程式執行結果
+1. topo1.txt
+![image]
+2. topo2.txt
+
+3. topo3.txt
