@@ -23,7 +23,6 @@ vector<vector<int> > shortest_path(int start, int end, int v_num, vector<vector<
     int node_pre;
     int fin_flag = 0;
     int counter = 0;
-    int add_flag = 0;
 
     //initialize e_arr_bonus;
     for(int i=0;i< v_num;i++){
