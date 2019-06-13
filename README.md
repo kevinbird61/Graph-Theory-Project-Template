@@ -1,5 +1,9 @@
-# Graph-Theory-Project-Template
-Project template of course - Graph Theory (EE6622E) in National Cheng Kung University.
+# 程式碼思路
+1. 讀取圖片後,轉成二維的點點關係圖
+2. 利用該點點關係圖,取的各點的indegree與outdegree
+3. 若各點的indegree = outdegree則此問題為一筆劃問題
+4. 若indegree ！= outdegree 則在degree不相等的兩點間增加edge 使各點的indegree = outdegree
+5. 
 
 ## How to run
 
