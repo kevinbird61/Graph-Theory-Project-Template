@@ -1,9 +1,39 @@
-# 程式碼思路
+# E24046307 Proect report
+## 演算法思路
 1. 讀取圖片後,轉成二維的點點關係圖
-2. 利用該點點關係圖,取的各點的indegree與outdegree
+2. 利用該點點關係圖,取得各點的indegree與outdegree
 3. 若各點的indegree = outdegree則此問題為一筆劃問題
 4. 若indegree ！= outdegree 則在degree不相等的兩點間增加edge 使各點的indegree = outdegree
-5. 
+5. 完成一筆劃問題
+
+## 程式碼解釋
+```
+#include <algorithm>
+#include <iostream>
+#include <unistd.h>
+#include <map>
+#include "network_manager.h"
+#include "gplot.h"
+#include "path.h"
+#include "fstream"
+
+using namespace std;
+```
+此段程式碼宣告所需的標頭檔
+
+...
+vector<vector<int> > shortest_path(int start, int end, int v_num, vector<vector<int> >& e_arr){
+    //variable declaration
+    vector <vector<int> > e_arr_bonus;
+    vector <int> path_buffer;
+    vector <int> previous_node;
+    int node_now;
+    int node_pre_index;
+    int node_pre;
+    int fin_flag = 0;
+    int counter = 0;
+    int add_flag = 0;
+...
 
 ## How to run
 
