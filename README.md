@@ -127,23 +127,23 @@ int main(int argc, char** argv){
     int start = 0;
     int end = 0;
 ```
-solution 用於打開輸出檔案
-v_arr 用於紀錄各點
-e_arr 用於紀錄各邊
-e_arr_bonus 用於紀錄shortest_path的回傳值
-degree_arr 用於紀錄各點degree
-depth_arr 用於紀錄各點與起點的距離,距離較大則優先訪問（DFS演算法）
-path_buffe 用於紀錄所經路徑
-edge_num 用於紀錄邊的總數
-node_now 用於紀錄現在的點
-fin_flag 用於紀錄while loop是否完成目標工作
-add_flag 用於紀錄是否需要進行shortest_path的運算
-next_node 用於紀錄下一個點是誰
-next_node_depth 用於紀錄下一個點的深度
-count_in 用於紀錄目前的點的indegree
-count_out 用於紀錄目前的點的outdegree
-start 用於紀錄shortest_path起始點
-end 用於紀錄shortest_path終點
+solution 用於打開輸出檔案  
+v_arr 用於紀錄各點  
+e_arr 用於紀錄各邊  
+e_arr_bonus 用於紀錄shortest_path的回傳值  
+degree_arr 用於紀錄各點degree  
+depth_arr 用於紀錄各點與起點的距離,距離較大則優先訪問（DFS演算法）  
+path_buffe 用於紀錄所經路徑  
+edge_num 用於紀錄邊的總數  
+node_now 用於紀錄現在的點  
+fin_flag 用於紀錄while loop是否完成目標工作  
+add_flag 用於紀錄是否需要進行shortest_path的運算  
+next_node 用於紀錄下一個點是誰  
+next_node_depth 用於紀錄下一個點的深度  
+count_in 用於紀錄目前的點的indegree  
+count_out 用於紀錄目前的點的outdegree  
+start 用於紀錄shortest_path起始點  
+end 用於紀錄shortest_path終點  
 ```
 //open file
     solution.open("solution.txt");
@@ -230,3 +230,92 @@ end 用於紀錄shortest_path終點
 ```
 利用上述取得的degree關係,若非所有degree等於0,則將degree為正的點與degree為負的點之間兩兩配對  
 並利用shortest_path加到邊的關係圖中
+```
+//print edge array
+    cout<<"------ edge array ------"<<endl;
+    for(int i=0;i< v_arr.size();i++){
+      for(int j=0;j< v_arr.size();j++)
+        cout<< e_arr[i][j]<<" ";
+      cout<<endl;
+    }
+    cout<<"edge_num = "<< edge_num<<endl;
+```
+在終端機上印出邊的關係圖
+```
+//bulid depth array
+    for(int i=0;i< v_arr.size();i++)
+      depth_arr.push_back(0);
+    depth_arr[node_now] = 1;
+
+    fin_flag = 0;
+    while(!fin_flag){
+      fin_flag = 1;
+      for(int i=0;i< v_arr.size();i++)
+        if(e_arr[i][node_now] && depth_arr[i] == 0){
+          depth_arr[i] = depth_arr[node_now] +1;
+          depth_buffer.push_back(i);
+        }
+      for(int i=0;i< v_arr.size();i++)
+        if(!depth_arr[i]){
+          fin_flag = 0;
+          node_now = depth_buffer[0];
+          depth_buffer.erase(depth_buffer.begin());
+          break;
+        }
+    }
+   
+    //print depth array
+    cout<<"-------depth array-------"<<endl;
+    for(int i=0;i< depth_arr.size();i++)
+      cout<<"depth_arr["<< i <<"]= "<< depth_arr[i]<<endl;
+```
+利用BFS演算法計算出各點離起點的深度並紀錄之
+```
+//go through all graph
+    node_now = 0;
+    while(edge_num){
+      next_node_depth = 0;
+      path_buffer.push_back(node_now);
+      for(int i=0;i< v_arr.size();i++)
+        if(e_arr[node_now][i] && depth_arr[i]>next_node_depth){
+          next_node_depth = depth_arr[i];
+          next_node = i;
+        }
+      e_arr[node_now][next_node]--;
+      node_now = next_node;
+      edge_num --;                   
+    }
+    path_buffer.push_back(node_now);
+```
+利用上面取得的深度關係進行DFS演算法,處理一筆劃問題
+```
+//print path
+    cout<<"----------path----------"<<endl;
+    cout<<"path:";
+    cout<<" "<<v_arr[path_buffer[0]];
+    for(int i=1;i<path_buffer.size();i++)
+      cout<<"--> "<<v_arr[path_buffer[i]];
+    cout<<endl;
+```
+在終端機上印出路徑結果
+```
+//output path
+    solution<<"path:";
+    solution<<" "<<v_arr[path_buffer[0]];
+    for(int i=1;i<path_buffer.size();i++)
+      solution<<"--> "<<v_arr[path_buffer[i]];
+    solution<<endl;
+```
+在solution.txt輸出路徑結果
+```
+// using gplot to export a dot file, and then using graphviz to generate the figure
+    Gplot *gp = new Gplot();
+    gp->gp_add(nm->elist);
+    gp->gp_dump(true);
+    gp->gp_export("topo");
+
+    solution.close();
+
+    return 0;
+```
+把圖特徵轉成dot檔,
