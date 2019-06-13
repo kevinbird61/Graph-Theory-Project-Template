@@ -327,8 +327,9 @@ make
 ```
 
 ## 程式執行結果
-1. topo1.txt
-![image]
+1. topo1.txt  
+![image](https://github.com/p5802p5802/Graph-Theory-Project-Template/blob/master/topo.png)  
 2. topo2.txt
-
+![image](https://github.com/p5802p5802/Graph-Theory-Project-Template/blob/master/topo2.png)  
 3. topo3.txt
+![image](https://github.com/p5802p5802/Graph-Theory-Project-Template/blob/master/topo3.png)  
