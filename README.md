@@ -34,12 +34,12 @@ vector<vector<int> > shortest_path(int start, int end, int v_num, vector<vector<
     int counter = 0;
 ```
 
-此function的目的在於找兩點間的最短路徑 並回傳哪些路徑需要多走一次
-e_arr_bonus 用於紀錄兩點間的所經路徑,之後用於加入edge matrix中
-path_buffer 用於紀錄兩點間的所經節點
-previous_node 用於紀錄前一個節點在path_buffer中的位置
-node_now 用於紀錄現在的節點位置
-node_pre_index 用於紀錄前一個節點在path_buffer中的位置
-node_pre 用於紀錄前一個節點是誰
-fin_flag 用於紀錄while loop是否完成目標工作
-counter 用於紀錄目前BFS演算法走到
+此function的目的在於找兩點間的最短路徑 並回傳哪些路徑需要多走一次  
+e_arr_bonus 用於紀錄兩點間的所經路徑,之後用於加入edge matrix中  
+path_buffer 用於紀錄兩點間的所經節點  
+previous_node 用於紀錄前一個節點在path_buffer中的位置  
+node_now 用於紀錄現在的節點位置  
+node_pre_index 用於紀錄前一個節點在path_buffer中的位置  
+node_pre 用於紀錄前一個節點是誰  
+fin_flag 用於紀錄while loop是否完成目標工作  
+counter 用於紀錄目前BFS演算法走到  
