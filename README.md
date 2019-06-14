@@ -1,4 +1,4 @@
-# E24046307 Proect report
+# E24046307 Project report
 ## 圖的設定
 1. 圖為有向圖
 2. 每個邊的權重值皆為1
